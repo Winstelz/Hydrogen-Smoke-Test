@@ -1,15 +1,18 @@
 import { test, expect } from '@playwright/test';
+import { LogIn } from '../pages/LogIn';
 import { execPath } from 'process';
 
 
 
 test('Search', async ({ page }) => {
-    //Navigate to Hydrogen site    
-        await page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
+    const LogInPage = new LogIn(page)
+
+    //Navigate to Hydrogen site   
+        await LogInPage.gotoHomePage();
     //Key in Password   
-        await page.getByRole('textbox').fill('top-secret');
+        await LogInPage.EnterPassword();
     //Click Submit Button
-        await page.getByRole('button').click();
+        await LogInPage.ClickSubmit();
     //Verify Pencil Banner
         await expect(page.locator('.br-carousel__main')).toBeVisible();
 //Click Search Icon
