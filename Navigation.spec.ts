@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 
-test('Shop Nav', async ({ page }) => {
+test('Navigation', async ({ page }) => {
     //Navigate to Hydrogen site    
         await page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
     //Key in Password   

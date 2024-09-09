@@ -1,14 +1,18 @@
 import { test, expect } from '@playwright/test';
+import { LogIn } from '../pages/LogIn';
 
 
 
 test('Cart', async ({ page }) => {
-    //Navigate to Hydrogen site    
-        await page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
+
+    const LogInPage = new LogIn(page)
+
+    //Navigate to Hydrogen site   
+        await LogInPage.gotoHomePage();
     //Key in Password   
-        await page.getByRole('textbox').fill('top-secret');
+        await LogInPage.EnterPassword();
     //Click Submit Button
-        await page.getByRole('button').click();
+        await LogInPage.ClickSubmit();
     //Verify Pencil Banner
         await expect(page.locator('.br-carousel__main')).toBeVisible();
 
@@ -16,7 +20,7 @@ test('Cart', async ({ page }) => {
         await page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/products/skinny-dip?Size=6');
         await page.waitForTimeout(2000);
     //Add to Bag
-        const AddtoBag = await page.locator("//button[normalize-space()='Add to Bag']");
+        const AddtoBag = await page.locator("//button[@class='br-add-to-cart__button br-button br-button--full-width br-button--has-text br-button--sm']");
         await AddtoBag.click();
         const Checkout = await page.locator("//a[normalize-space()='Continue to Checkout']");
         const CloseCart = page.locator("//*[name()='path' and contains(@d,'M12.0002 1')]");
