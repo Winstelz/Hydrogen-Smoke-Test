@@ -1,9 +1,13 @@
 import { test, expect } from '@playwright/test';
+import { Home } from '../pages/HomePage';
 import { LogIn } from '../pages/LogIn';
+import { PencilBanner } from '../pages/PencilBanner';
 
 
 test('Navigation', async ({ page }) => {
     const LogInPage = new LogIn(page)
+    const HomePage = new Home(page)
+    const Banner = new PencilBanner(page)
 
     //Navigate to Hydrogen site   
         await LogInPage.gotoHomePage();
@@ -12,18 +16,13 @@ test('Navigation', async ({ page }) => {
     //Click Submit Button
         await LogInPage.ClickSubmit();
     //Verify Pencil Banner
-        await expect(page.locator('.br-carousel__main')).toBeVisible();
+        await Banner.ClickPencilBanner();
 
     //Click Shop Menu Item
-        await page.waitForLoadState();
-        const shopButton = await page.getByRole('button', { name: 'Shop' });
-        await shopButton.click();
-        await page.waitForTimeout(2000);
+        await HomePage.ClickShop();
     //Click Fresh Picked
-        const FreshPicked = await page.getByRole('navigation').getByRole('link', { name: 'Fresh Picked' })
-        await FreshPicked.click();
-        await page.waitForTimeout(2000);
-        expect(page.url()).toContain('/products/fresh-picked?Size=6');
+        await HomePage.ClickFreshPicked();
+        
     
     //Click Learn Menu Item 
         const Learn = await page.getByRole('button', { name: 'Learn' });
