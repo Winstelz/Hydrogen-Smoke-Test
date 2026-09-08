@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LogIn } from '../pages/LogIn';
+import { LogIn } from '../src/pom/logIn';
 
 
 
