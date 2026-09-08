@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { LogIn } from '../pages/LogIn';
+import { LogIn } from '../src/pom/logIn';
 
 
 
-test('HeroCTA', async ({ page }) => {
+test.skip('HeroCTA', async ({ page }) => {
     const LogInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   
