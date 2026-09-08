@@ -1,30 +1,27 @@
 import { test, expect } from '@playwright/test';
-import { Home } from '../pages/HomePage';
-import { LogIn } from '../pages/LogIn';
-import { PencilBanner } from '../pages/PencilBanner';
+import { Home } from '../src/pom/homePage';
+import { LogIn } from '../src/pom/logIn';
+import { PencilBanner } from '../src/pom/pencilBanner';
 
 
 test('Navigation', async ({ page }) => {
-    const LogInPage = new LogIn(page)
-    const HomePage = new Home(page)
-    const Banner = new PencilBanner(page)
+    const logInPage = new LogIn(page)
+    const homePage = new Home(page)
+    const banner = new PencilBanner(page)
 
-    //Navigate to Hydrogen site   
-        await LogInPage.gotoHomePage();
-    //Key in Password   
-        await LogInPage.EnterPassword();
-    //Click Submit Button
-        await LogInPage.ClickSubmit();
-    //Verify Pencil Banner
-        await Banner.ClickPencilBanner();
-
-    //Click Shop Menu Item
-        await HomePage.ClickShop();
-    //Click Fresh Picked
-        await HomePage.ClickFreshPicked();
+//Navigate to Hydrogen site   
+    await logInPage.gotoHomePage();
+//Log In to Hydrogen site
+    await logInPage.logIn();
+//Assert Pencil Banner
+    await banner.clickPencilBanner();
+//Click List Menu Item
+    await homePage.clickList();
+//Click Fresh Picked
+    await homePage.clickFreshPicked();
         
-    
-    //Click Learn Menu Item 
+    /*Need to work on and update
+//Click Learn Menu Item 
         const Learn = await page.getByRole('button', { name: 'Learn' });
         await Learn.click();
         await page.waitForTimeout(2000);
@@ -34,7 +31,7 @@ test('Navigation', async ({ page }) => {
         expect(page.url()).toContain("/products/fresh-picked?Size=6");   
 
 
-    //Click Grid Menu Item  
+//Click Grid Menu Item  
         await page.waitForLoadState();
         const Grids = await page.getByRole('button', { name: 'Grid' })
         await Grids.click();
@@ -50,5 +47,5 @@ test('Navigation', async ({ page }) => {
         await Trainers.click();
         await page.waitForTimeout(2000);
         expect(page.url()).toContain("/collections/trainers");
-        
+        */
     });
