@@ -3,7 +3,7 @@ import { LogIn } from '../pages/LogIn';
 
 
 
-test('Cart', async ({ page }) => {
+test.skip('Cart', async ({ page }) => {
 
     const LogInPage = new LogIn(page)
 

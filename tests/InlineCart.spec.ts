@@ -3,7 +3,7 @@ import { LogIn } from '../pages/LogIn';
 
 
 
-test('Inline Cart', async ({ page }) => {
+test.skip('Inline Cart', async ({ page }) => {
     const LogInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   

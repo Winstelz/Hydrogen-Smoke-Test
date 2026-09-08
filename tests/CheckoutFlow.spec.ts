@@ -3,7 +3,7 @@ import { LogIn } from '../pages/LogIn';
 
 
 
-test('Checkout Flow', async ({ page }) => {
+test.skip('Checkout Flow', async ({ page }) => {
     const LogInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   

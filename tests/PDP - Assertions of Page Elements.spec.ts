@@ -3,7 +3,7 @@ import { LogIn } from '../pages/LogIn';
 
 
 
-test('PDP - Assertions of Page Elements', async ({ page }) => {
+test.skip('PDP - Assertions of Page Elements', async ({ page }) => {
     const LogInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   

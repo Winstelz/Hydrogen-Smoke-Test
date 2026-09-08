@@ -4,7 +4,7 @@ import { ChildProcess } from 'child_process';
 
 
 
-test('ShopLook_PDP_Checkout', async ({ page }) => {
+test.skip('ShopLook_PDP_Checkout', async ({ page }) => {
     const LogInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   

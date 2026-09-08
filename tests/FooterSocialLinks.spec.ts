@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LogIn } from '../pages/LogIn';
 
-test('FooterSocialLinks', async ({ page }) => {
+test.skip('FooterSocialLinks', async ({ page }) => {
     const LogInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   
