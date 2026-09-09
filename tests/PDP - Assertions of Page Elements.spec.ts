@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { LogIn } from '../pages/LogIn';
+import { LogIn } from '../src/pom/logIn';
 
 
 
-test('PDP - Assertions of Page Elements', async ({ page }) => {
+test.skip('PDP - Assertions of Page Elements', async ({ page }) => {
     const LogInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   

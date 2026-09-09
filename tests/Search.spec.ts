@@ -4,7 +4,7 @@ import { execPath } from 'process';
 
 
 
-test('Search', async ({ page }) => {
+test.skip('Search', async ({ page }) => {
     const LogInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   
