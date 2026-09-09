@@ -21,9 +21,9 @@ export class Home {
         this.freshPicked = page.getByRole('navigation').getByRole('link', { name: 'Fresh Picked' }).first();
         this.mixed = page.getByRole('button', { name: 'Mixed' });
         this.yardGames = page.getByRole('navigation').getByRole('link', { name: 'Yard Games' }).first();
-        this.media = page.getByRole('link', { name: 'Media' });
-        this.pageComingSoon = page.getByRole('link', { name: 'Page coming soon' });
-        this.grid = page.getByRole('link', { name: 'Grid' });
+        this.media = page.getByRole('button', { name: 'Media' });
+        this.pageComingSoon = page.getByRole('link', { name: /Page coming soon/i });
+        this.grid = page.getByRole('button', { name: 'Grid' });
         this.firstTrainers = page.getByRole('link', { name: 'Trainers' }).nth(1);
         this.direct = page.getByRole('link', { name: 'Direct' });
         this.logo = page.getByRole('img', { name: 'Bedrock' });
