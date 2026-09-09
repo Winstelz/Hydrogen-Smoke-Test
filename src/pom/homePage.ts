@@ -13,25 +13,21 @@ export class Home {
     readonly firstTrainers: Locator;
     readonly direct: Locator;
     readonly logo: Locator;
-    readonly learn: Locator;
-    readonly pageComing: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.password = page.getByRole('textbox');
         this.list = page.getByRole('button', { name: 'List' });
-        this.freshPicked = page.getByRole('navigation').getByRole('link', { name: 'Fresh Picked' });
+        this.freshPicked = page.getByRole('navigation').getByRole('link', { name: 'Fresh Picked' }).first();
         this.mixed = page.getByRole('button', { name: 'Mixed' });
-        this.yardGames = page.getByRole('link', { name: 'Yard Games' });
+        this.yardGames = page.getByRole('navigation').getByRole('link', { name: 'Yard Games' }).first();
         this.media = page.getByRole('link', { name: 'Media' });
         this.pageComingSoon = page.getByRole('link', { name: 'Page coming soon' });
         this.grid = page.getByRole('link', { name: 'Grid' });
         this.firstTrainers = page.getByRole('link', { name: 'Trainers' }).nth(1);
         this.direct = page.getByRole('link', { name: 'Direct' });
         this.logo = page.getByRole('img', { name: 'Bedrock' });
-        this.learn = page.getByRole('button', { name: 'Learn' });
-        this.pageComing = page.locator("//a[normalize-space()='Page coming soon']");
-    }
+}
 
     async gotoHomePage() {
         console.log({ message: 'Navigating to the home page...' });
