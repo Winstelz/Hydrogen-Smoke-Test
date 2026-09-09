@@ -9,9 +9,9 @@ test.skip('PDP - Assertions of Page Elements', async ({ page }) => {
     //Navigate to Hydrogen site   
         await LogInPage.gotoHomePage();
     //Key in Password   
-        await LogInPage.EnterPassword();
+        await LogInPage.enterPassword();
     //Click Submit Button
-        await LogInPage.ClickSubmit();
+        await LogInPage.clickSubmit();
     //Verify Pencil Banner
         await expect(page.locator('.br-carousel__main')).toBeVisible();
 
