@@ -57,23 +57,11 @@ export class Home {
         await this.page.waitForTimeout(2000);
     }
 
-    async clickLearn() {
-        console.log({ message: 'Clicking Learn button...' });
-        await this.learn.click();
-        await this.page.waitForTimeout(2000);
-    }
-
     async clickYardGames() {
         console.log({ message: 'Clicking Yard Games...' });
         await this.yardGames.click();
         await this.page.waitForTimeout(2000);
         await expect(this.page.url()).toContain('/products/yard-games?Size=6');
-    }
-
-    async clickPageComing() {
-        console.log({ message: 'Clicking Page Coming link...' });
-        await this.pageComing.click();
-        await this.page.waitForTimeout(2000);
     }
 
     async clickMedia() {

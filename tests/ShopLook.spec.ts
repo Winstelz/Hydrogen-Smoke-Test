@@ -1,18 +1,18 @@
 import { test, expect } from '@playwright/test';
 import { LogIn } from '../src/pom/logIn';
-import { ChildProcess } from 'child_process';
+
 
 
 
 test.skip('ShopLook_PDP_Checkout', async ({ page }) => {
-    const LogInPage = new LogIn(page)
+    const logInPage = new LogIn(page)
 
     //Navigate to Hydrogen site   
-        await LogInPage.gotoHomePage();
+        await logInPage.gotoHomePage();
     //Key in Password   
-        await LogInPage.EnterPassword();
+        await logInPage.enterPassword();
     //Click Submit Button
-        await LogInPage.ClickSubmit();
+        await logInPage.clickSubmit();
     //Verify Pencil Banner
     await expect(page.locator('.br-carousel__main')).toBeVisible();
 
