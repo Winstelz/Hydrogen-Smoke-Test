@@ -171,7 +171,7 @@ async clickAccountIcon() {
     await this.page.waitForTimeout(5000);
     expect(this.page.url()).toContain(`/shopify.com/authentication/`);
     await this.page.goBack();
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
 
 }
 
