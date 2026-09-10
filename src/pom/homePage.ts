@@ -39,8 +39,8 @@ export class HomePage {
         this.bannerPreviousSlide = page.locator('.br-carousel__main').getByRole('button', { name: 'Go to previous slide' });
         this.searchIcon = page.getByRole('button', { name: /Open Search Bar/i });
         this.searchInput = page.getByRole('searchbox', { name: /Start a search/i });
-        this.accountIcon = page.getByRole('button', { name: /Log In/i });
-        this.cartIcon = page.getByRole('button', { name: /Cart/i });
+        this.accountIcon = page.getByRole('link', { name: /Log In/i });
+        this.cartIcon = page.getByRole('button', { name: /Cart/i }).first();
     }
 
     async gotoHomePage() {
@@ -57,7 +57,7 @@ export class HomePage {
     async clickFreshPicked() {
         console.log({ message: 'Clicking Fresh Picked link...' });
         await this.freshPicked.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(5000);
         await expect(this.page.url()).toContain('/products/fresh-picked?Size=6');
     }
 
@@ -160,8 +160,8 @@ async searchForItem(item: string) {
     await this.searchInput.fill(item);
     await this.searchInput.press('Enter');
     await this.page.waitForLoadState('load');
-    expect(this.page.url()).toContain(`/search?q=${item}`);
     await this.page.waitForTimeout(5000);
+    expect(this.page.url()).toContain(`/search?q=${item}`);
 
     }
 
