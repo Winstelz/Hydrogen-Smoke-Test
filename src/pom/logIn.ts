@@ -7,8 +7,8 @@ export class LogIn {
 
     constructor(page: any) {
         this.page = page;
-        this.password =  page.getByRole('textbox')
-        this.submit = page.getByRole('button')
+        this.password =  page.getByRole('textbox');
+        this.submit = page.getByRole('button');
 
     }
 
@@ -33,7 +33,6 @@ export class LogIn {
         await this.enterPassword(password);
         await this.clickSubmit();
     }
-
 
 
 }

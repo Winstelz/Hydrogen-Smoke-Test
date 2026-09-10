@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 
-export class Home {
+export class HomePage {
     readonly page: Page;
     readonly password: Locator;
     readonly list: Locator;
@@ -13,6 +13,13 @@ export class Home {
     readonly firstTrainers: Locator;
     readonly direct: Locator;
     readonly logo: Locator;
+    readonly pencilBanner: Locator;
+    readonly bannerNextSlide: Locator;
+    readonly bannerPreviousSlide: Locator;
+    readonly searchIcon: Locator;
+    readonly searchInput: Locator;
+    readonly accountIcon: Locator;
+    readonly cartIcon: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -27,7 +34,14 @@ export class Home {
         this.firstTrainers = page.getByRole('link', { name: 'Trainers' }).nth(1);
         this.direct = page.getByRole('link', { name: 'Direct' });
         this.logo = page.getByRole('img', { name: 'Bedrock' });
-}
+        this.pencilBanner = page.locator('.br-carousel__main').first();
+        this.bannerNextSlide = page.locator('.br-carousel__main').getByRole('button', { name: 'Go to next slide' });
+        this.bannerPreviousSlide = page.locator('.br-carousel__main').getByRole('button', { name: 'Go to previous slide' });
+        this.searchIcon = page.getByRole('button', { name: /Open Search Bar/i });
+        this.searchInput = page.getByRole('searchbox', { name: /Start a search/i });
+        this.accountIcon = page.getByRole('link', { name: /Log In/i });
+        this.cartIcon = page.getByRole('button', { name: /Cart/i }).first();
+    }
 
     async gotoHomePage() {
         console.log({ message: 'Navigating to the home page...' });
@@ -43,7 +57,7 @@ export class Home {
     async clickFreshPicked() {
         console.log({ message: 'Clicking Fresh Picked link...' });
         await this.freshPicked.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(5000);
         await expect(this.page.url()).toContain('/products/fresh-picked?Size=6');
     }
 
@@ -99,4 +113,72 @@ export class Home {
         await this.page.waitForTimeout(2000);
         await expect(this.page.url()).toBe('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
     }
+
+    async clickBanner (container: Locator) {
+        console.log({message: `Clicking Banner Arrows...`});
+        const activeSlide = container.locator('.swiper-slide-active');
+        // Grab the active slide's index before clicking
+        const getActiveIndex = async () => {
+        return Number(await activeSlide.getAttribute('data-swiper-slide-index'));
+  };
+
+        const index1 = await getActiveIndex();
+
+        await this.bannerNextSlide.click();
+        await this.page.waitForTimeout(2000);
+        const index2 = await getActiveIndex();
+        expect(index2).not.toBe(index1); // confirms it moved forward
+
+        await this.bannerNextSlide.click();
+        await this.page.waitForTimeout(2000);
+        const index3 = await getActiveIndex();
+        expect(index3).not.toBe(index2);
+
+        await this.bannerPreviousSlide.click();
+        await this.page.waitForTimeout(2000);
+        const index4 = await getActiveIndex();
+        expect(index4).toBe(index2); // back to slide 2
+
+        await this.bannerPreviousSlide.click();
+        await this.page.waitForTimeout(2000);
+        const index5 = await getActiveIndex();
+        expect(index5).toBe(index1); // back to start
+
+        await this.bannerNextSlide.click();
+        await this.page.waitForTimeout(2000);
+}
+
+async clickSearchIcon() {
+    console.log({ message: `Clicking Search Icon....`});
+    await this.searchIcon.click();
+    await this.page.waitForLoadState(`domcontentloaded`);
+
+}
+
+async searchForItem(item: string) {
+    console.log({ message: `Searching for item: ${item}....`});
+    await this.searchInput.fill(item);
+    await this.searchInput.press('Enter');
+    await this.page.waitForLoadState('load');
+    await this.page.waitForTimeout(5000);
+    expect(this.page.url()).toContain(`/search?q=${item}`);
+
+    }
+
+async clickAccountIcon() {
+    console.log({ message: `Clicking Account Icon....`});
+    await this.accountIcon.click();
+    await this.page.waitForTimeout(5000);
+    expect(this.page.url()).toContain(`/shopify.com/authentication/`);
+    await this.page.goBack();
+    await this.page.waitForTimeout(2000);
+
+}
+
+async clickCartIcon() {
+    console.log({ message: `Clicking Cart Icon....`});
+    await this.cartIcon.click();
+    await this.page.waitForTimeout(10000);
+
+}
 }
