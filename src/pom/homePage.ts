@@ -168,8 +168,8 @@ async searchForItem(item: string) {
 async clickAccountIcon() {
     console.log({ message: `Clicking Account Icon....`});
     await this.accountIcon.click();
+    await this.page.waitForTimeout(5000);
     expect(this.page.url()).toContain(`/shopify.com/authentication/`);
-    await this.page.waitForTimeout(1000);
     await this.page.goBack();
     await this.page.waitForTimeout(1000);
 
