@@ -20,6 +20,18 @@ export class HomePage {
     readonly searchInput: Locator;
     readonly accountIcon: Locator;
     readonly cartIcon: Locator;
+    readonly freshPickedFooter: Locator;
+    readonly yardGamesFooter: Locator;
+    readonly gardenPartyFooter: Locator;
+    readonly skinnyDipFooter: Locator;
+    readonly ourStory: Locator;
+    readonly ingredientsFooter: Locator;
+    readonly contactUs: Locator;
+    readonly faq: Locator;
+    readonly support: Locator;
+    readonly shipping: Locator;
+    readonly returns: Locator;
+    readonly subscriptions: Locator
 
     constructor(page: Page) {
         this.page = page;
@@ -41,6 +53,18 @@ export class HomePage {
         this.searchInput = page.getByRole('searchbox', { name: /Start a search/i });
         this.accountIcon = page.getByRole('link', { name: /Log In/i });
         this.cartIcon = page.getByRole('button', { name: /Cart/i }).first();
+        this.freshPickedFooter = page.locator('footer').getByRole('link', { name: 'Fresh Picked' });
+        this.yardGamesFooter = page.locator('footer').getByRole('link', { name: 'Yard Games' });
+        this.gardenPartyFooter = page.locator('footer').getByRole('link', { name: 'Garden Party' });
+        this.skinnyDipFooter = page.locator('footer').getByRole('link', { name: 'Skinny Dip' });
+        this.ourStory = page.locator('footer').getByRole('link', { name: 'Our Story' });
+        this.ingredientsFooter = page.locator('footer').getByRole('link', { name: 'Ingredients' });
+        this.contactUs = page.locator('footer').getByRole('link', { name: 'Contact Us' });
+        this.faq = page.locator('footer').getByRole('link', { name: 'FAQ' });
+        this.support = page.locator('footer').getByRole('link', { name: 'Support' });
+        this.shipping = page.locator('footer').getByRole('link', { name: 'Shipping' });
+        this.returns = page.locator('footer').getByRole('link', { name: 'Returns' });
+        this.subscriptions = page.locator('footer').getByRole('link', { name: 'Subscriptions' });
     }
 
     async gotoHomePage() {
@@ -181,4 +205,88 @@ async clickCartIcon() {
     await this.page.waitForTimeout(10000);
 
 }
+
+async clickFreshPickedFooter() {
+    console.log({ message: 'Clicking Fresh Picked Footer...' });
+    await this.freshPickedFooter.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/products/fresh-picked?Size=6');
+    }
+
+async clickYardGamesFooter() {
+    console.log({ message: 'Clicking Yard Games Footer...' });
+    await this.yardGamesFooter.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/products/yard-games?Size=6');
+    }
+
+async clickGardenPartyFooter() {
+    console.log({ message: 'Clicking Garden Party Footer...' });
+    await this.gardenPartyFooter.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/products/garden-party?Size=6');
+    }
+
+async clickSkinnyDipFooter() {
+    console.log({ message: 'Clicking Skinny Dip Footer...' });
+    await this.skinnyDipFooter.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/products/skinny-dip?Size=6');
+    }
+
+async clickOurStoryFooter() {
+    console.log({ message: 'Clicking Our Story Footer...' });
+    await this.ourStory.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/our-story');
+    }
+
+async clickIngredientsFooter() {
+    console.log({ message: 'Clicking Ingredients Footer...' });
+    await this.ingredientsFooter.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/ingredients');
+    }
+
+async clickContactUsFooter() {
+    console.log({ message: 'Clicking Contact Us Footer...' });
+    await this.contactUs.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/contact-us');
+    }
+
+async clickFaqFooter() {
+    console.log({ message: 'Clicking FAQ Footer...' });
+    await this.faq.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/faq');
+    }
+
+async clickSupportFooter() {
+    console.log({ message: 'Clicking Support Footer...' });
+    await this.support.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/support');
+    }
+
+async clickShippingFooter() {
+    console.log({ message: 'Clicking Shipping Footer...' });
+    await this.shipping.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/shipping');
+    }
+
+async clickReturnsFooter() {
+    console.log({ message: 'Clicking Returns Footer...' });
+    await this.returns.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/returns');
+    }
+
+async clickSubscriptionFooter() {
+    console.log({ message: 'Clicking Subscriptions Footer...' });
+    await this.subscriptions.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('/subscription');
+    }
 }
