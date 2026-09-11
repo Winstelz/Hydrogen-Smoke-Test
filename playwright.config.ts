@@ -4,6 +4,7 @@ import { defineConfig } from '@playwright/test';
 const isCI = !!process.env.CI;
 
 export default defineConfig({
+  globalSetup: require.resolve('./global-setup'),
   testDir: './tests',
   // Keep the overall test budget generous so one slow suite does not fail unrelated cases.
   timeout: 600000,
@@ -20,6 +21,8 @@ export default defineConfig({
   maxFailures: isCI ? undefined : 3,
 
   use: {
+    // Use the authenticated storage state produced by global-setup
+    storageState: 'auth.json',
     headless: isCI ? true : false,
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
