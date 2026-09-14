@@ -22,9 +22,6 @@ export const test = base.extend<PageObjects>({
 });
 
 test.beforeEach(async ({ login }) => {
-//Navigate to Hydrogen site   
-    await login.gotoHomePage();
-//Log In to Hydrogen site
     await login.logIn();
 });
 
