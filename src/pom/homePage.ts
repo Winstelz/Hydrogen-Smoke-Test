@@ -303,13 +303,6 @@ async clickXFooter() {
     console.log({ message: 'Clicking X Footer...' });
     await this.xSocialLink.click();
     await this.page.waitForTimeout(5000);
-    await expect(this.page.url()).toContain('thestable');
-    }
-
-async clickFacebookFooter() {
-    console.log({ message: 'Clicking Facebook Footer...' });
-    await this.facebookSocialLink.click();
-
     const cloudflareVisible = await this.page
         .getByText(/Verify you are human|Performing security verification/i)
         .isVisible()
@@ -319,7 +312,13 @@ async clickFacebookFooter() {
         console.log('Cloudflare challenge detected; skipping facebook validation.');
         await this.page.goBack();
     }
+    await expect(this.page.url()).toContain('thestable');
+    }
 
+async clickFacebookFooter() {
+    console.log({ message: 'Clicking Facebook Footer...' });
+    await this.facebookSocialLink.click();
+    await this.page.waitForTimeout(6000);
     await expect(this.page.url()).toContain('thestablegroup');
 }
 
