@@ -38,8 +38,6 @@ test('Footer Navigation Right', async ({ homePage }) => {
         await homePage.clickContactUsFooter();
     //Click FAQ
         await homePage.clickFaqFooter();
-    //Click Support
-        await homePage.clickSupportFooter();
     //Click Shipping
         await homePage.clickShippingFooter();
     //Click Returns

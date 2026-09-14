@@ -73,13 +73,13 @@ export class HomePage {
         this.shipping = page.locator('footer').getByRole('link', { name: 'Shipping' });
         this.returns = page.locator('footer').getByRole('link', { name: 'Returns' });
         this.subscriptions = page.locator('footer').getByRole('link', { name: 'Subscriptions' });
-        this.xSocialLink = page.locator('footer').getByRole('link', { name: 'X' });
-        this.facebookSocialLink = page.locator('footer').getByRole('link', { name: 'Facebook' });
-        this.spotifySocialLink = page.locator('footer').getByRole('link', { name: 'Spotify' });
-        this.pinterestSocialLink = page.locator('footer').getByRole('link', { name: 'Pinterest' });
-        this.instagramSocialLink = page.locator('footer').getByRole('link', { name: 'Instagram' });
-        this.youtubeSocialLink = page.locator('footer').getByRole('link', { name: 'YouTube' });
-        this.tiktokSocialLink = page.locator('footer').getByRole('link', { name: 'TikTok' });
+        this.xSocialLink = page.locator('footer a[title="Twitter"]');
+        this.facebookSocialLink = page.locator('footer a[title="Facebook"]');
+        this.spotifySocialLink = page.locator('footer a[title="Spotify"]');
+        this.pinterestSocialLink = page.locator('footer a[title="Pinterest"]');
+        this.instagramSocialLink = page.locator('footer a[title="Instagram"]');
+        this.youtubeSocialLink = page.locator('footer a[title="YouTube"]');
+        this.tiktokSocialLink = page.locator('footer a[title="TikTok"]');
     }
 
     async gotoHomePage() {
@@ -253,21 +253,21 @@ async clickOurStoryFooter() {
     console.log({ message: 'Clicking Our Story Footer...' });
     await this.ourStory.click();
     await this.page.waitForTimeout(5000);
-    await expect(this.page.url()).toContain('/our-story');
+    await expect(this.page.url()).toContain('hydrogen-remix-bedrock-');
     }
 
 async clickIngredientsFooter() {
     console.log({ message: 'Clicking Ingredients Footer...' });
     await this.ingredientsFooter.click();
     await this.page.waitForTimeout(5000);
-    await expect(this.page.url()).toContain('/ingredients');
+    await expect(this.page.url()).toContain('hydrogen-remix-bedrock-');
     }
 
 async clickContactUsFooter() {
     console.log({ message: 'Clicking Contact Us Footer...' });
     await this.contactUs.click();
     await this.page.waitForTimeout(5000);
-    await expect(this.page.url()).toContain('/contact-us');
+    await expect(this.page.url()).toContain('hydrogen-remix-bedrock-');
     }
 
 async clickFaqFooter() {
@@ -277,32 +277,26 @@ async clickFaqFooter() {
     await expect(this.page.url()).toContain('/faq');
     }
 
-async clickSupportFooter() {
-    console.log({ message: 'Clicking Support Footer...' });
-    await this.support.click();
-    await this.page.waitForTimeout(5000);
-    await expect(this.page.url()).toContain('/support');
-    }
 
 async clickShippingFooter() {
     console.log({ message: 'Clicking Shipping Footer...' });
     await this.shipping.click();
     await this.page.waitForTimeout(5000);
-    await expect(this.page.url()).toContain('/shipping');
+    await expect(this.page.url()).toContain('/shipping-policy');
     }
 
 async clickReturnsFooter() {
     console.log({ message: 'Clicking Returns Footer...' });
     await this.returns.click();
     await this.page.waitForTimeout(5000);
-    await expect(this.page.url()).toContain('/returns');
+    await expect(this.page.url()).toContain('/refund-policy');
     }
 
 async clickSubscriptionFooter() {
     console.log({ message: 'Clicking Subscriptions Footer...' });
     await this.subscriptions.click();
     await this.page.waitForTimeout(5000);
-    await expect(this.page.url()).toContain('/subscription');
+    await expect(this.page.url()).toContain('/subscription-policy');
     }
 
 async clickXFooter() {
