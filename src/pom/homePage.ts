@@ -32,6 +32,14 @@ export class HomePage {
     readonly shipping: Locator;
     readonly returns: Locator;
     readonly subscriptions: Locator
+    readonly xSocialLink: Locator;
+    readonly facebookSocialLink: Locator;
+    readonly spotifySocialLink: Locator;
+    readonly pinterestSocialLink: Locator;
+    readonly instagramSocialLink: Locator;
+    readonly youtubeSocialLink: Locator;
+    readonly tiktokSocialLink: Locator;
+
 
     constructor(page: Page) {
         this.page = page;
@@ -65,6 +73,13 @@ export class HomePage {
         this.shipping = page.locator('footer').getByRole('link', { name: 'Shipping' });
         this.returns = page.locator('footer').getByRole('link', { name: 'Returns' });
         this.subscriptions = page.locator('footer').getByRole('link', { name: 'Subscriptions' });
+        this.xSocialLink = page.locator('footer').getByRole('link', { name: 'X' });
+        this.facebookSocialLink = page.locator('footer').getByRole('link', { name: 'Facebook' });
+        this.spotifySocialLink = page.locator('footer').getByRole('link', { name: 'Spotify' });
+        this.pinterestSocialLink = page.locator('footer').getByRole('link', { name: 'Pinterest' });
+        this.instagramSocialLink = page.locator('footer').getByRole('link', { name: 'Instagram' });
+        this.youtubeSocialLink = page.locator('footer').getByRole('link', { name: 'YouTube' });
+        this.tiktokSocialLink = page.locator('footer').getByRole('link', { name: 'TikTok' });
     }
 
     async gotoHomePage() {
@@ -289,4 +304,53 @@ async clickSubscriptionFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('/subscription');
     }
+
+async clickXFooter() {
+    console.log({ message: 'Clicking X Footer...' });
+    await this.xSocialLink.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('thestable');
+    }
+
+async clickFacebookFooter() {
+    console.log({ message: 'Clicking Facebook Footer...' });
+    await this.facebookSocialLink.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('thestablegroup');
+    }
+
+async clickSpotifyFooter() {
+    console.log({ message: 'Clicking Spotify Footer...' });
+    await this.spotifySocialLink.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('track');
+    }
+
+async clickPinterestFooter() {
+    console.log({ message: 'Clicking Pinterest Footer...' });
+    await this.pinterestSocialLink.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('pinterest');
+    }
+
+async clickInstagramFooter() {
+    console.log({ message: 'Clicking Instagram Footer...' });
+    await this.instagramSocialLink.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('instagram');
+    }
+
+async clickYouTubeFooter() {
+    console.log({ message: 'Clicking YouTube Footer...' });
+    await this.youtubeSocialLink.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('youtube');
+}
+
+async clickTikTokFooter() {
+    console.log({ message: 'Clicking TikTok Footer...' });
+    await this.tiktokSocialLink.click();
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.url()).toContain('faq');
+}
 }
