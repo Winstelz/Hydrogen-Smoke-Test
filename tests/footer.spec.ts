@@ -17,6 +17,10 @@ export const test = base.extend<PageObjects>({
 
 });
 
+test.beforeEach(async ({ login }) => {
+    await login.logIn();
+});
+
 test('Footer Navigation Right', async ({ homePage }) => {
     //Click Fresh Picked
         await homePage.clickFreshPickedFooter();
