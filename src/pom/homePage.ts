@@ -303,17 +303,20 @@ async clickXFooter() {
     console.log({ message: 'Clicking X Footer...' });
     await this.xSocialLink.click();
     await this.page.waitForTimeout(5000);
+
     const cloudflareVisible = await this.page
         .getByText(/Verify you are human|Performing security verification/i)
         .isVisible()
         .catch(() => false);
 
     if (cloudflareVisible) {
-        console.log('Cloudflare challenge detected; skipping facebook validation.');
+        console.log('Cloudflare challenge detected; skipping X validation.');
         await this.page.goBack();
+        return;
     }
+
     await expect(this.page.url()).toContain('thestable');
-    }
+}
 
 async clickFacebookFooter() {
     console.log({ message: 'Clicking Facebook Footer...' });
