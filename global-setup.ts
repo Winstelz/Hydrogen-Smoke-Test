@@ -16,6 +16,5 @@ export default async () => {
     await context.storageState({ path: 'auth.json' });
     console.log('Saved authenticated storage state to auth.json');
   } finally {
-    await browser.close();
   }
 };
