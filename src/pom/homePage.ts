@@ -313,7 +313,7 @@ async clickXFooter() {
         .catch(() => false);
 
     if (cloudflareVisible) {
-        console.log('Cloudflare challenge detected; skipping X validation.');
+        console.log({ message: 'Cloudflare challenge detected; skipping X validation.' });
         await this.page.goBack();
         return;
     }
@@ -330,7 +330,7 @@ async clickFacebookFooter() {
         .catch(() => false);
 
     if (loginPageVisible) {
-        console.log('Login page detected; logging in.');
+        console.log({ message: 'Login page detected; logging in.' });
         await this.login.logIn();
     }
     await this.facebookSocialLink.click();

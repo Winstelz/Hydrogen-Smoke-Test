@@ -13,8 +13,11 @@ export class LogIn {
     }
 
     async gotoHomePage() {
-        await this.page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
-  }
+          await this.page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
+          await this.page.waitForLoadState('domcontentloaded');
+          // wait for the password input to be visible (storefront password gate)
+          await this.page.getByRole('textbox').first().waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
+      }
     
     async enterPassword(password?: string) {
         const pw = password ?? process.env.PASSWORD;
