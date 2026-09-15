@@ -336,6 +336,7 @@ async clickFacebookFooter() {
     await this.facebookSocialLink.click();
     await this.page.waitForTimeout(6000);
     await expect(this.page.url()).toContain('thestablegroup');
+    await this.page.goBack();
 }
 
 async clickSpotifyFooter() {
@@ -343,6 +344,7 @@ async clickSpotifyFooter() {
     await this.spotifySocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('track');
+    await this.page.goBack();
     }
 
 async clickPinterestFooter() {
@@ -350,20 +352,23 @@ async clickPinterestFooter() {
     await this.pinterestSocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('pinterest');
-    }
+    await this.page.goBack();    
+}
 
 async clickInstagramFooter() {
     console.log({ message: 'Clicking Instagram Footer...' });
     await this.instagramSocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('instagram');
-    }
+    await this.page.goBack();
+}
 
 async clickYouTubeFooter() {
     console.log({ message: 'Clicking YouTube Footer...' });
     await this.youtubeSocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('youtube');
+    await this.page.goBack();
 }
 
 async clickTikTokFooter() {
