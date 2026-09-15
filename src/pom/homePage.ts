@@ -337,7 +337,7 @@ async clickFacebookFooter() {
     await this.page.waitForTimeout(6000);
     await expect(this.page.url()).toContain('thestablegroup');
     await this.login.gotoHomePage();
-    await this.login.logIn();
+    //await this.login.logIn();
 }
 
 async clickSpotifyFooter() {
@@ -346,7 +346,7 @@ async clickSpotifyFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('track');
     await this.login.gotoHomePage();
-    await this.login.logIn();
+    //await this.login.logIn();
     }
 
 async clickPinterestFooter() {
@@ -355,7 +355,7 @@ async clickPinterestFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('pinterest');
     await this.login.gotoHomePage();
-    await this.login.logIn();   
+    //await this.login.logIn();   
 }
 
 async clickInstagramFooter() {
@@ -364,7 +364,7 @@ async clickInstagramFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('instagram');
     await this.login.gotoHomePage();
-    await this.login.logIn();
+    //await this.login.logIn();
 }
 
 async clickYouTubeFooter() {
@@ -373,7 +373,7 @@ async clickYouTubeFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('youtube');
     await this.login.gotoHomePage();
-    await this.login.logIn();
+    //await this.login.logIn();
 }
 
 async clickTikTokFooter() {
