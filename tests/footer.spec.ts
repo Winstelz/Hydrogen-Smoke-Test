@@ -49,6 +49,7 @@ test('Footer Navigation Right', async ({ homePage }) => {
 test('Footer Social Links', async ({ homePage }) => {
     //Click X Social Links
         await homePage.clickXFooter();
+        await homePage.page.waitForTimeout(1000);
     //Click Facebook Social Links
         await homePage.clickFacebookFooter();
     //Click Spotify Social Links

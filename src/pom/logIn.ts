@@ -14,7 +14,7 @@ export class LogIn {
 
     async gotoHomePage() {
         await this.page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
-    }
+  }
     
     async enterPassword(password?: string) {
         const pw = password ?? process.env.PASSWORD;
