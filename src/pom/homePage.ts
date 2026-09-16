@@ -1,7 +1,9 @@
 import { expect, Locator, Page } from '@playwright/test';
+import { LogIn } from './logIn';
 
 export class HomePage {
     readonly page: Page;
+    login: LogIn;
     readonly password: Locator;
     readonly list: Locator;
     readonly freshPicked: Locator;
@@ -43,6 +45,7 @@ export class HomePage {
 
     constructor(page: Page) {
         this.page = page;
+        this.login = new LogIn(page);
         this.password = page.getByRole('textbox');
         this.list = page.getByRole('button', { name: 'List' });
         this.freshPicked = page.getByRole('navigation').getByRole('link', { name: 'Fresh Picked' }).first();
@@ -310,19 +313,32 @@ async clickXFooter() {
         .catch(() => false);
 
     if (cloudflareVisible) {
-        console.log('Cloudflare challenge detected; skipping X validation.');
-        await this.page.goBack();
+        console.log({ message: 'Cloudflare challenge detected; skipping X validation.' });
+        await this.login.gotoHomePage();
         return;
     }
 
     await expect(this.page.url()).toContain('thestable');
+    await this.login.gotoHomePage();
 }
 
 async clickFacebookFooter() {
     console.log({ message: 'Clicking Facebook Footer...' });
+
+    const loginPageVisible = await this.page
+        .getByText(/Hello|Reach out to the Bedrock team if you would like access/i)
+        .isVisible()
+        .catch(() => false);
+
+    if (loginPageVisible) {
+        console.log({ message: 'Login page detected; logging in.' });
+        await this.login.logIn();
+    }
     await this.facebookSocialLink.click();
     await this.page.waitForTimeout(6000);
     await expect(this.page.url()).toContain('thestablegroup');
+    await this.login.gotoHomePage();
+    
 }
 
 async clickSpotifyFooter() {
@@ -330,6 +346,8 @@ async clickSpotifyFooter() {
     await this.spotifySocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('track');
+    await this.login.gotoHomePage();
+   
     }
 
 async clickPinterestFooter() {
@@ -337,20 +355,26 @@ async clickPinterestFooter() {
     await this.pinterestSocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('pinterest');
-    }
+    await this.login.gotoHomePage();
+      
+}
 
 async clickInstagramFooter() {
     console.log({ message: 'Clicking Instagram Footer...' });
     await this.instagramSocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('instagram');
-    }
+    await this.login.gotoHomePage();
+    
+}
 
 async clickYouTubeFooter() {
     console.log({ message: 'Clicking YouTube Footer...' });
     await this.youtubeSocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('youtube');
+    await this.login.gotoHomePage();
+   
 }
 
 async clickTikTokFooter() {
