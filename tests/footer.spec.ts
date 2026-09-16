@@ -47,9 +47,8 @@ test('Footer Navigation Right', async ({ homePage }) => {
     });
     
 test('Footer Social Links', async ({ homePage }) => {
-    /*TO DO look into clicking X and going back to run rest of social link test
     //Click X Social Links
-        await homePage.clickXFooter();*/
+        await homePage.clickXFooter();
     //Click Facebook Social Links
         await homePage.clickFacebookFooter();
     //Click Spotify Social Links
