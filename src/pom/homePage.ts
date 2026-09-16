@@ -320,6 +320,7 @@ async clickXFooter() {
 
     await expect(this.page.url()).toContain('thestable');
     await this.login.gotoHomePage();
+    await this.page.waitForTimeout(2000);
 }
 
 async clickFacebookFooter() {
@@ -338,6 +339,7 @@ async clickFacebookFooter() {
     await this.page.waitForTimeout(6000);
     await expect(this.page.url()).toContain('thestablegroup');
     await this.login.gotoHomePage();
+    await this.page.waitForTimeout(2000);
     
 }
 
@@ -347,6 +349,7 @@ async clickSpotifyFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('track');
     await this.login.gotoHomePage();
+    await this.page.waitForTimeout(2000);
    
     }
 
@@ -356,6 +359,7 @@ async clickPinterestFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('pinterest');
     await this.login.gotoHomePage();
+    await this.page.waitForTimeout(2000);
       
 }
 
@@ -365,6 +369,7 @@ async clickInstagramFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('instagram');
     await this.login.gotoHomePage();
+    await this.page.waitForTimeout(2000);
     
 }
 
@@ -374,6 +379,7 @@ async clickYouTubeFooter() {
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('youtube');
     await this.login.gotoHomePage();
+    await this.page.waitForTimeout(2000);
    
 }
 
