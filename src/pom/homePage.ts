@@ -82,7 +82,7 @@ export class HomePage {
         this.pinterestSocialLink = page.locator('footer a[title="Pinterest"]');
         this.instagramSocialLink = page.locator('footer a[title="Instagram"]');
         this.youtubeSocialLink = page.locator('footer a[title="YouTube"]');
-        this.tiktokSocialLink = page.locator('footer a[title="TikTok"]');
+        this.tiktokSocialLink = page.locator('footer a[title="tiktok"]');
     }
 
     async gotoHomePage() {
