@@ -401,7 +401,9 @@ async clickTikTokFooter() {
 
 async checkForError500() {
     console.log({ message: 'Checking for Error 500 on the page...' });
-    const isError500Visible = await this.error500.isVisible();
-    await expect(isError500Visible).toContain('500'); 
+    await this.error500.isVisible();
+    const textContent = await this.error500.textContent();
+    console.log({ message: `Error 500 text content: ${textContent}` });
+    await expect(this.error500).toHaveText(/500/); 
 }
 }
