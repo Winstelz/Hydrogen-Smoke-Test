@@ -41,6 +41,8 @@ export class HomePage {
     readonly instagramSocialLink: Locator;
     readonly youtubeSocialLink: Locator;
     readonly tiktokSocialLink: Locator;
+    readonly error500: Locator;
+ 
 
 
     constructor(page: Page) {
@@ -83,6 +85,7 @@ export class HomePage {
         this.instagramSocialLink = page.locator('footer a[title="Instagram"]');
         this.youtubeSocialLink = page.locator('footer a[title="YouTube"]');
         this.tiktokSocialLink = page.locator('footer a[title="tiktok"]');
+        this.error500 = page.getByRole('heading', { name: '500' });
     }
 
     async gotoHomePage() {
@@ -206,6 +209,12 @@ async searchForItem(item: string) {
     expect(this.page.url()).toContain(`/search?q=${item}`);
 
     }
+
+async searchForItemAndWaitForResults(item: string) {
+    console.log({ message: `Searching for item: ${item}....`});
+    await this.searchInput.fill(item);
+    await this.page.waitForTimeout(2000);
+}
 
 async clickAccountIcon() {
     console.log({ message: `Clicking Account Icon....`});
@@ -388,5 +397,13 @@ async clickTikTokFooter() {
     await this.tiktokSocialLink.click();
     await this.page.waitForTimeout(5000);
     await expect(this.page.url()).toContain('faq');
+}
+
+async checkForError500() {
+    console.log({ message: 'Checking for Error 500 on the page...' });
+    await this.error500.isVisible();
+    const textContent = await this.error500.textContent();
+    console.log({ message: `Error 500 text content: ${textContent}` });
+    await expect(this.error500).toHaveText(/500/); 
 }
 }

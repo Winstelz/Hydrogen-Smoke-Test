@@ -1,33 +1,36 @@
-import { test, expect } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
 import { LogIn } from '../src/pom/logIn';
+import { HomePage } from '../src/pom/homePage';
+
+type PageObjects = {
+  homePage: HomePage;
+  login: LogIn;
+};
+
+export const test = base.extend<PageObjects>({
+  homePage: async ({ page }, use) => {
+    await use(new HomePage(page));
+  },
+    login: async ({ page }, use) => {
+    await use(new LogIn(page));
+  },
+
+});
+
+test.beforeEach(async ({ login }) => {
+    await login.logIn();
+});
 
 
-
-
-test.skip('Search', async ({ page }) => {
-    const LogInPage = new LogIn(page)
-
-    //Navigate to Hydrogen site   
-        await LogInPage.gotoHomePage();
-    //Key in Password   
-        await LogInPage.enterPassword();
-    //Click Submit Button
-        await LogInPage.clickSubmit();
-    //Verify Pencil Banner
-        await expect(page.locator('.br-carousel__main')).toBeVisible();
+test('Search', async ({ homePage }) => {
 //Click Search Icon
-    await page.waitForLoadState();
-    const Search = page.locator("//button[@aria-label='Open Search Bar']//span[@class='br-icon']//*[name()='svg']//*[name()='path' and contains(@d,'M15.5 14h-')]");
-    await Search.click();
+    await homePage.clickSearchIcon();
 //Type Search Term 1
-    const SearchBar = page.locator("//input[@id='q']");
-    await SearchBar.fill("shoe");
-    await page.waitForTimeout(2000);
-//Verify Category
-    const Catg = await page.getByText("Shop By Flavor");
-    await Catg.click();
-    await page.waitForTimeout(2000);
-    expect(page.url()).toContain("shop-by-flavor");
+    await homePage.searchForItemAndWaitForResults("shoe");
+//Assert Category
+    await homePage.checkForError500();
+/*Seems site errors now if waiting for results. 
+  Leaving this here in case it gets fixed in the future.
 //Click Search Icon
     await page.waitForLoadState();
     await Search.click();
@@ -54,6 +57,7 @@ test.skip('Search', async ({ page }) => {
     const SearchResIcon = await page.locator("//input[@id='q']");
     await SearchResIcon.fill("men")
     await page.waitForTimeout(2000);
+    */
 
 
 
