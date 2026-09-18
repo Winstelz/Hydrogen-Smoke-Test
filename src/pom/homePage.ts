@@ -42,6 +42,12 @@ export class HomePage {
     readonly youtubeSocialLink: Locator;
     readonly tiktokSocialLink: Locator;
     readonly error500: Locator;
+    readonly shopLookButton1: Locator;
+    readonly shopLookImage1: Locator;
+    readonly shopLookButton2: Locator;
+    readonly shopLookImage2: Locator;
+    readonly shopLookButton3: Locator;
+    readonly shopLookImage3: Locator
  
 
 
@@ -86,6 +92,12 @@ export class HomePage {
         this.youtubeSocialLink = page.locator('footer a[title="YouTube"]');
         this.tiktokSocialLink = page.locator('footer a[title="tiktok"]');
         this.error500 = page.getByRole('heading', { name: '500' });
+        this.shopLookButton1 = page.getByRole('button', { name: 'Fundays Green' });
+        this.shopLookImage1 = page.getByTestId('image-wrapper').locator('img[alt="Garden Party"]')
+        this.shopLookButton2 = page.getByRole('button', { name: 'Fundays Pink' });
+        this.shopLookImage2 = page.getByTestId('image-wrapper').locator('img[alt="FizzBlend Classic Tee!"]')
+        this.shopLookButton3 = page.getByRole('button', { name: 'Fundays Yellow' });
+        this.shopLookImage3 = page.getByTestId('image-wrapper').locator('img[alt="Skinny Dip"]')
     }
 
     async gotoHomePage() {
@@ -96,66 +108,66 @@ export class HomePage {
     async clickList() {
         console.log({ message: 'Clicking List button...' });
         await this.list.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
     }
 
     async clickFreshPicked() {
         console.log({ message: 'Clicking Fresh Picked link...' });
         await this.freshPicked.click();
-        await this.page.waitForTimeout(5000);
+        await this.page.waitForLoadState('domcontentloaded');
         await expect(this.page.url()).toContain('/products/fresh-picked?Size=6');
     }
 
     async clickMixed() {
         console.log({ message: 'Clicking Mixed button...' });
         await this.mixed.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
     }
 
     async clickYardGames() {
         console.log({ message: 'Clicking Yard Games...' });
         await this.yardGames.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
         await expect(this.page.url()).toContain('/products/yard-games?Size=6');
     }
 
     async clickMedia() {
         console.log({ message: 'Clicking Media link...' });
         await this.media.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
     }
 
     async clickPageComingSoon() {
         console.log({ message: 'Clicking Page Coming Soon link...' });
         await this.pageComingSoon.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
         await expect(this.page.url()).toContain('/products/fresh-picked?Size=6');
     }
 
     async clickGrid() {
         console.log({ message: 'Clicking Grid link...' });
         await this.grid.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
     }
 
     async clickFirstTrainers() {
         console.log({ message: 'Clicking First Trainers link...' });
         await this.firstTrainers.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
         await expect(this.page.url()).toContain('/collections/trainers');
     }
 
     async clickDirect() {
         console.log({ message: 'Clicking Direct link...' });
         await this.direct.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
         await expect(this.page.url()).toContain('/collections/trainers');
     }
 
     async clickLogo() {
         console.log({ message: 'Clicking Logo...' });
         await this.logo.click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
         await expect(this.page.url()).toBe('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
     }
 
@@ -219,73 +231,73 @@ async searchForItemAndWaitForResults(item: string) {
 async clickAccountIcon() {
     console.log({ message: `Clicking Account Icon....`});
     await this.accountIcon.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     expect(this.page.url()).toContain(`/shopify.com/authentication/`);
     await this.page.goBack();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForLoadState('domcontentloaded');
 
 }
 
 async clickCartIcon() {
     console.log({ message: `Clicking Cart Icon....`});
     await this.cartIcon.click();
-    await this.page.waitForTimeout(10000);
+    await this.page.waitForLoadState('domcontentloaded');
 
 }
 
 async clickFreshPickedFooter() {
     console.log({ message: 'Clicking Fresh Picked Footer...' });
     await this.freshPickedFooter.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('/products/fresh-picked?Size=6');
     }
 
 async clickYardGamesFooter() {
     console.log({ message: 'Clicking Yard Games Footer...' });
     await this.yardGamesFooter.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('/products/yard-games?Size=6');
     }
 
 async clickGardenPartyFooter() {
     console.log({ message: 'Clicking Garden Party Footer...' });
     await this.gardenPartyFooter.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('/products/garden-party?Size=6');
     }
 
 async clickSkinnyDipFooter() {
     console.log({ message: 'Clicking Skinny Dip Footer...' });
     await this.skinnyDipFooter.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('/products/skinny-dip?Size=6');
     }
 
 async clickOurStoryFooter() {
     console.log({ message: 'Clicking Our Story Footer...' });
     await this.ourStory.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('hydrogen-remix-bedrock-');
     }
 
 async clickIngredientsFooter() {
     console.log({ message: 'Clicking Ingredients Footer...' });
     await this.ingredientsFooter.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('hydrogen-remix-bedrock-');
     }
 
 async clickContactUsFooter() {
     console.log({ message: 'Clicking Contact Us Footer...' });
     await this.contactUs.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('hydrogen-remix-bedrock-');
     }
 
 async clickFaqFooter() {
     console.log({ message: 'Clicking FAQ Footer...' });
     await this.faq.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('/faq');
     }
 
@@ -293,28 +305,28 @@ async clickFaqFooter() {
 async clickShippingFooter() {
     console.log({ message: 'Clicking Shipping Footer...' });
     await this.shipping.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('/shipping-policy');
     }
 
 async clickReturnsFooter() {
     console.log({ message: 'Clicking Returns Footer...' });
     await this.returns.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('/refund-policy');
     }
 
 async clickSubscriptionFooter() {
     console.log({ message: 'Clicking Subscriptions Footer...' });
     await this.subscriptions.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('/subscription-policy');
     }
 
 async clickXFooter() {
     console.log({ message: 'Clicking X Footer...' });
     await this.xSocialLink.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
 
     const cloudflareVisible = await this.page
         .getByText(/Verify you are human|Performing security verification/i)
@@ -329,7 +341,7 @@ async clickXFooter() {
 
     await expect(this.page.url()).toContain('thestable');
     await this.login.gotoHomePage();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForLoadState('domcontentloaded');
 }
 
 async clickFacebookFooter() {
@@ -348,54 +360,54 @@ async clickFacebookFooter() {
     await this.page.waitForTimeout(6000);
     await expect(this.page.url()).toContain('thestablegroup');
     await this.login.gotoHomePage();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForLoadState('domcontentloaded');
     
 }
 
 async clickSpotifyFooter() {
     console.log({ message: 'Clicking Spotify Footer...' });
     await this.spotifySocialLink.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('track');
     await this.login.gotoHomePage();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForLoadState('domcontentloaded');
    
     }
 
 async clickPinterestFooter() {
     console.log({ message: 'Clicking Pinterest Footer...' });
     await this.pinterestSocialLink.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('pinterest');
     await this.login.gotoHomePage();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForLoadState('domcontentloaded');
       
 }
 
 async clickInstagramFooter() {
     console.log({ message: 'Clicking Instagram Footer...' });
     await this.instagramSocialLink.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('instagram');
     await this.login.gotoHomePage();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForLoadState('domcontentloaded');
     
 }
 
 async clickYouTubeFooter() {
     console.log({ message: 'Clicking YouTube Footer...' });
     await this.youtubeSocialLink.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('youtube');
     await this.login.gotoHomePage();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForLoadState('domcontentloaded');
    
 }
 
 async clickTikTokFooter() {
     console.log({ message: 'Clicking TikTok Footer...' });
     await this.tiktokSocialLink.click();
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain('faq');
 }
 
@@ -406,4 +418,15 @@ async checkForError500() {
     console.log({ message: `Error 500 text content: ${textContent}` });
     await expect(this.error500).toHaveText(/500/); 
 }
+
+async clickShopTheLookItem(button: Locator, image: Locator, url: string) {
+    console.log({ message: 'Clicking Shop the Look item...' });
+    await expect(button).toBeVisible();
+    await button.click();
+    await expect(image).toBeVisible();
+    await image.click();
+    await this.page.waitForLoadState('domcontentloaded');
+    await expect(this.page.url()).toContain(`${url}`);
+}
+
 }

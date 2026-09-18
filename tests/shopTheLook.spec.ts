@@ -1,41 +1,36 @@
-import { test, expect } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
 import { LogIn } from '../src/pom/logIn';
+import { HomePage } from '../src/pom/homePage';
+import { PDP } from '../src/pom/pdp';
+
+type PageObjects = {
+  homePage: HomePage;
+  login: LogIn;
+  pdp: PDP;
+};
+
+export const test = base.extend<PageObjects>({
+  homePage: async ({ page }, use) => {
+    await use(new HomePage(page));
+  },
+    login: async ({ page }, use) => {
+    await use(new LogIn(page));
+  },
+    pdp: async ({ page }, use) => {
+    await use(new PDP(page));
+},
+});
 
 
+test('Shop the Look e2e (PDP->Checkout)', async ({ homePage, pdp }) => {
+//Click first Shop the Look
+    await homePage.clickShopTheLookItem(homePage.shopLookButton1, homePage.shopLookImage1, 'garden-party');
+//Click a variant/size
+    await pdp.selectSize(pdp.size12);
+//Click Add to Bag
+    await pdp.clickAddToBagButton();
 
-
-test.skip('ShopLook_PDP_Checkout', async ({ page }) => {
-    const logInPage = new LogIn(page)
-
-    //Navigate to Hydrogen site   
-        await logInPage.gotoHomePage();
-    //Key in Password   
-        await logInPage.enterPassword();
-    //Click Submit Button
-        await logInPage.clickSubmit();
-    //Verify Pencil Banner
-    await expect(page.locator('.br-carousel__main')).toBeVisible();
-
-    //Click first Shop the Look
-       const FirstBtn = await page.locator("(//button[@type='button'])[23]");
-       await FirstBtn.click();
-       const FirstImg =  await page.locator("text=Fresh Picked!").nth(1);
-        await FirstImg.click();
-       const PDPheader = await page.locator("h1[class='br-title br-title--h4']");
-       await PDPheader.textContent("Fresh Picked!");
-
-    //Verify url is correct
-      expect(page.url()).toContain('fresh-picked');
-
-    //Click a variant/size
-        const Firstsize = page.locator("text=12");
-        await Firstsize.click();
-
-    //Click Add to Bag
-        const AddtoBag = page.locator("text=Add to Bag");
-        await AddtoBag.click();
-
-    //Look for Checkout Button in Inline Cart
+/*   //Look for Checkout Button in Inline Cart
         await page.locator("text=Checkout");
 
     //Verify QTN in Cart
@@ -188,6 +183,6 @@ test.skip('ShopLook_PDP_Checkout', async ({ page }) => {
    // Click Logo to go back Home
    await Logo.click();
    expect(page.url()).toContain('hydrogen');
-
+*/
 
 });
