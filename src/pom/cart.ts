@@ -2,7 +2,6 @@ import { expect, type Locator, type Page } from '@playwright/test';
 
 export class Cart {
     readonly page: Page;
-    readonly checkoutButton: Locator;
     readonly inlineCartQty: Locator;
     readonly inlineCartClose: Locator;
     readonly continueCheckoutButton: Locator;
