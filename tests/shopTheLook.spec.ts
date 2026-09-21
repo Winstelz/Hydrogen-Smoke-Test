@@ -26,6 +26,10 @@ export const test = base.extend<PageObjects>({
   },
 });
 
+test.beforeEach(async ({ login }) => {
+    await login.logIn();
+});
+
 
 test('Shop the Look e2e (PDP->Checkout)', async ({ cart, homePage, pdp }) => {
 //Click first Shop the Look
