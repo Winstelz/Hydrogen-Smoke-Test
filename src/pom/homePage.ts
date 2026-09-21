@@ -93,11 +93,11 @@ export class HomePage {
         this.tiktokSocialLink = page.locator('footer a[title="tiktok"]');
         this.error500 = page.getByRole('heading', { name: '500' });
         this.shopLookButton1 = page.getByRole('button', { name: 'Fundays Green' });
-        this.shopLookImage1 = page.getByTestId('image-wrapper').locator('img[alt="Garden Party"]')
+        this.shopLookImage1 = page.getByTestId('image-wrapper').locator('img[alt="Garden Party"]').first();
         this.shopLookButton2 = page.getByRole('button', { name: 'Fundays Pink' });
-        this.shopLookImage2 = page.getByTestId('image-wrapper').locator('img[alt="FizzBlend Classic Tee!"]')
+        this.shopLookImage2 = page.getByTestId('image-wrapper').locator('img[alt="FizzBlend Classic Tee!"]');
         this.shopLookButton3 = page.getByRole('button', { name: 'Fundays Yellow' });
-        this.shopLookImage3 = page.getByTestId('image-wrapper').locator('img[alt="Skinny Dip"]')
+        this.shopLookImage3 = page.getByTestId('image-wrapper').locator('img[alt="Skinny Dip"]');
     }
 
     async gotoHomePage() {
