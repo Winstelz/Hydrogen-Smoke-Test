@@ -2,11 +2,13 @@ import { test as base, expect } from '@playwright/test';
 import { LogIn } from '../src/pom/logIn';
 import { HomePage } from '../src/pom/homePage';
 import { PDP } from '../src/pom/pdp';
+import { Cart } from '../src/pom/cart';
 
 type PageObjects = {
   homePage: HomePage;
   login: LogIn;
   pdp: PDP;
+  cart: Cart;
 };
 
 export const test = base.extend<PageObjects>({
@@ -18,37 +20,29 @@ export const test = base.extend<PageObjects>({
   },
     pdp: async ({ page }, use) => {
     await use(new PDP(page));
-},
+  },
+    cart: async ({ page }, use) => {
+    await use(new Cart(page));
+  },
 });
 
 
-test('Shop the Look e2e (PDP->Checkout)', async ({ homePage, pdp }) => {
+test('Shop the Look e2e (PDP->Checkout)', async ({ cart, homePage, pdp }) => {
 //Click first Shop the Look
     await homePage.clickShopTheLookItem(homePage.shopLookButton1, homePage.shopLookImage1, 'garden-party');
 //Click a variant/size
     await pdp.selectSize(pdp.size12);
 //Click Add to Bag
     await pdp.clickAddToBagButton();
-
-/*   //Look for Checkout Button in Inline Cart
-        await page.locator("text=Checkout");
-
-    //Verify QTN in Cart
-        const QTN = page.locator("//span[@class='br-property__value'][normalize-space()='12']");
-        expect(QTN.textContent('12'));
-
-    //Close Inline Cart
-        const CloseCart = page.locator("button[aria-label='close'] span[class='br-icon']");
-        await CloseCart.click();
-
-      // Click Logo to go back Home
-      const Logo = await page.locator("//img[@alt='Bedrock']");
-      await Logo.click();
-      expect(page.url()).toContain('hydrogen');
-      await page.waitForTimeout(2000);
+//Assert on Inline Cart
+    await cart.assertContinueCheckoutButton();
+//Assert QTY in Cart
+    await cart.assertQtyInlineCart('12');
+//Click Continue to Checkout
+    await cart.clickContinueCheckoutButton();
 
 
-
+/*TODO: Is it worth doing each item if first one works?
 
     //Click Second Shop the Look
       const SecondBtn = await page.locator("(//button[@type='button'])[24]");
