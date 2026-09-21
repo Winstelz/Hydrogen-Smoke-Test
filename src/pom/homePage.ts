@@ -102,7 +102,7 @@ export class HomePage {
 
     async gotoHomePage() {
         console.log({ message: 'Navigating to the home page...' });
-        await this.page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
+        await this.page.goto('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/', { waitUntil: 'domcontentloaded'  });
     }
 
     async clickList() {
