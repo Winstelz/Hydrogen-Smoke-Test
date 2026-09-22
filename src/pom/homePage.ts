@@ -425,6 +425,7 @@ async clickShopTheLookItem(button: Locator, image: Locator, url: string) {
     await button.click();
     await expect(image).toBeVisible();
     await image.click();
+    await this.page.waitForTimeout(1000);
     await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page.url()).toContain(`${url}`);
 }
