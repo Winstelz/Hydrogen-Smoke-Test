@@ -93,7 +93,7 @@ export class HomePage {
         this.tiktokSocialLink = page.locator('footer a[title="tiktok"]');
         this.error500 = page.getByRole('heading', { name: '500' });
         this.shopLookButton1 = page.getByRole('button', { name: 'Fundays Green' });
-        this.shopLookImage1 = page.getByRole('link', { name: 'Garden Party' }).filter({has: page.locator('a[href="/products/garden-party"]') }).first();
+        this.shopLookImage1 = page.locator('[data-testid="image-wrapper"]').filter({ has: page.locator('img[alt="Garden Party"]') }).first();
         this.shopLookButton2 = page.getByRole('button', { name: 'Fundays Pink' });
         this.shopLookImage2 = page.getByTestId('image-wrapper').locator('img[alt="FizzBlend Classic Tee!"]');
         this.shopLookButton3 = page.getByRole('button', { name: 'Fundays Yellow' });
