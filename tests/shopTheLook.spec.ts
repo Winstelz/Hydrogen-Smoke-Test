@@ -38,6 +38,9 @@ test('Shop the Look e2e (PDP->Checkout)', async ({ cart, homePage, pdp }) => {
     await pdp.selectSize(pdp.size12);
 //Click Add to Bag
     await pdp.clickAddToBagButton();
+/*TODO: seems cart is not appearing/not clickable here*/
+//Click on Cart
+    await homePage.clickCartIcon();
 //Assert on Inline Cart
     await cart.assertContinueCheckoutButton();
 //Assert QTY in Cart
