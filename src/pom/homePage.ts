@@ -100,8 +100,8 @@ export class HomePage {
         this.shopLookImage2 = page.getByTestId('image-wrapper').locator('img[alt="FizzBlend Classic Tee!"]');
         this.shopLookButton3 = page.getByRole('button', { name: 'Fundays Yellow' });
         this.shopLookImage3 = page.getByTestId('image-wrapper').locator('img[alt="Skinny Dip"]');
-        this.startBrowsingButton = page.getByRole('button', { name: 'Start Browsing'});
-        this.findHelpButton = page.getByRole('button', { name: 'Find Help'});
+        this.startBrowsingButton = page.getByRole('link', { name: 'Start Browsing'});
+        this.findHelpButton = page.getByRole('link', { name: 'Find Help'});
     
     }
 
