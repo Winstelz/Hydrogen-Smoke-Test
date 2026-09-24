@@ -439,16 +439,27 @@ async clickStartBrowsing() {
     console.log({ message: 'Clicking Start Browsing...'});
     await expect(this.startBrowsingButton).toBeVisible();
     await this.startBrowsingButton.click();
-    await this.page.waitForLoadState('domcontentloaded');
-    await expect(this.page.url()).toContain('products/fundays-shirt');
+
+    await Promise.all([
+    this.page.waitForURL(/\/products\/fundays-shirt/),
+    this.startBrowsingButton.click(),
+  ]);
+
+  await expect(this.page).toHaveURL(/\/products\/fundays-shirt/);
 }
 
 async clickFindHelp() {
     console.log({ message: 'Clicking Find Help...'});
     await expect(this.findHelpButton).toBeVisible();
     await this.findHelpButton.click();
-    await this.page.waitForLoadState('domcontentloaded');
-    await expect(this.page.url()).toContain('faq');
+
+    await Promise.all([
+    this.page.waitForURL(/\/faq\//),
+    this.findHelpButton.click(),
+  ]);
+
+  await expect(this.page).toHaveURL(/\/faq\//);
 }
 
 }
+
