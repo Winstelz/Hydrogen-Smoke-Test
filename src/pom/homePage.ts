@@ -47,7 +47,9 @@ export class HomePage {
     readonly shopLookButton2: Locator;
     readonly shopLookImage2: Locator;
     readonly shopLookButton3: Locator;
-    readonly shopLookImage3: Locator
+    readonly shopLookImage3: Locator;
+    readonly startBrowsingButton: Locator;
+    readonly findHelpButton: Locator;
  
 
 
@@ -98,6 +100,9 @@ export class HomePage {
         this.shopLookImage2 = page.getByTestId('image-wrapper').locator('img[alt="FizzBlend Classic Tee!"]');
         this.shopLookButton3 = page.getByRole('button', { name: 'Fundays Yellow' });
         this.shopLookImage3 = page.getByTestId('image-wrapper').locator('img[alt="Skinny Dip"]');
+        this.startBrowsingButton = page.locator('a[href="/products/fundays-shirt"][data-discover="true"]');
+        this.findHelpButton = page.locator('a[href="/faq"][data-discover="true"]');
+    
     }
 
     async gotoHomePage() {
@@ -430,4 +435,31 @@ async clickShopTheLookItem(button: Locator, image: Locator, url: string) {
     await expect(this.page.url()).toContain(`${url}`);
 }
 
+async clickStartBrowsing() {
+    console.log({ message: 'Clicking Start Browsing...'});
+    await expect(this.startBrowsingButton).toBeVisible();
+    await this.startBrowsingButton.click();
+
+    await Promise.all([
+    this.page.waitForURL(/\/products\/fundays-shirt/),
+    this.startBrowsingButton.click(),
+  ]);
+
+  await expect(this.page).toHaveURL(/\/products\/fundays-shirt/);
 }
+
+async clickFindHelp() {
+    console.log({ message: 'Clicking Find Help...'});
+    await expect(this.findHelpButton).toBeVisible();
+    await this.findHelpButton.click();
+
+    await Promise.all([
+    this.page.waitForURL(/\/faq\//),
+    this.findHelpButton.click(),
+  ]);
+
+  await expect(this.page).toHaveURL(/\/faq\//);
+}
+
+}
+
