@@ -101,7 +101,7 @@ export class HomePage {
         this.shopLookButton3 = page.getByRole('button', { name: 'Fundays Yellow' });
         this.shopLookImage3 = page.getByTestId('image-wrapper').locator('img[alt="Skinny Dip"]');
         this.startBrowsingButton = page.locator('a[href="/products/fundays-shirt"][data-discover="true"]');
-        this.findHelpButton = page.locator('a[href="/faq"][data-discover="true"]');
+        this.findHelpButton = page.locator('a[href="/faq"][data-discover="true"]').first();
     
     }
 
