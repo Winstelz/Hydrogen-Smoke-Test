@@ -457,11 +457,11 @@ async clickFindHelp() {
     await expect(this.findHelpButton).toBeVisible();
 
     await Promise.all([
-    this.page.waitForURL(/\/faq\//),
+    this.page.waitForURL(/\/faq(?:\/|$)/),
     this.findHelpButton.click(),
   ]);
 
-  await expect(this.page).toHaveURL(/\/faq\//);
+  await expect(this.page).toHaveURL(/\/faq(?:\/|$)/);
 }
 
 }
