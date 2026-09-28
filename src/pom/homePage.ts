@@ -172,14 +172,13 @@ export class HomePage {
     async clickLogo() {
         console.log({ message: 'Clicking Logo...' });
         await expect(this.logo).toBeVisible();
-        await this.logo.click();
 
          await Promise.all([
         this.page.waitForURL('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/'),
         this.logo.click(),
   ]);
 
-  await expect(this.page).toBe('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
+  await expect(this.page.url()).toBe('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
 }
 
     async clickBanner (container: Locator) {
@@ -444,7 +443,6 @@ async clickShopTheLookItem(button: Locator, image: Locator, url: string) {
 async clickStartBrowsing() {
     console.log({ message: 'Clicking Start Browsing...'});
     await expect(this.startBrowsingButton).toBeVisible();
-    await this.startBrowsingButton.click();
 
     await Promise.all([
     this.page.waitForURL(/\/products\/fundays-shirt/),
@@ -457,7 +455,6 @@ async clickStartBrowsing() {
 async clickFindHelp() {
     console.log({ message: 'Clicking Find Help...'});
     await expect(this.findHelpButton).toBeVisible();
-    await this.findHelpButton.click();
 
     await Promise.all([
     this.page.waitForURL(/\/faq\//),
