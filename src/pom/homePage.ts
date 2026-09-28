@@ -171,10 +171,16 @@ export class HomePage {
 
     async clickLogo() {
         console.log({ message: 'Clicking Logo...' });
+        await expect(this.logo).toBeVisible();
         await this.logo.click();
-        await this.page.waitForLoadState('domcontentloaded');
-        await expect(this.page.url()).toBe('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
-    }
+
+         await Promise.all([
+        this.page.waitForURL('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/'),
+        this.logo.click(),
+  ]);
+
+  await expect(this.page).toBe('https://hydrogen-remix-bedrock-6724052a8d6843c567a3.o2.myshopify.dev/');
+}
 
     async clickBanner (container: Locator) {
         console.log({message: `Clicking Banner Arrows...`});
